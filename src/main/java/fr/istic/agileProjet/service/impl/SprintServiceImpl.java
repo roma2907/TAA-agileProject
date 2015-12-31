@@ -21,46 +21,62 @@ import fr.istic.agileProjet.service.ISprintService;
 @Transactional
 public class SprintServiceImpl implements ISprintService {
 
-	@Autowired
-	private SprintRepository sprintRepository;
+    @Autowired
+    private SprintRepository sprintRepository;
 
-	@Autowired
-	private ProjetRepository projetRepository;
+    @Autowired
+    private ProjetRepository projetRepository;
 
-	@Autowired
-	private UserStoryRepository userStoryRepository;
+    @Autowired
+    private UserStoryRepository userStoryRepository;
 
-	@Autowired
-	private EpicRepository epicRepository;
+    @Autowired
+    private EpicRepository epicRepository;
 
-	@Override
-	public void addSprint(final Sprint sprint, final Long idProjet) {
-		final Project projectBdd = projetRepository.findOne(idProjet);
-		sprint.setProject(projectBdd);
-		sprintRepository.save(sprint);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addSprint(final Sprint sprint, final Long idProjet) {
+        final Project projectBdd = projetRepository.findOne(idProjet);
+        sprint.setProject(projectBdd);
+        sprintRepository.save(sprint);
+    }
 
-	@Override
-	public Sprint getOneSprint(final Long id) {
-		return sprintRepository.findOne(id);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Sprint getOneSprint(final Long id) {
+        return sprintRepository.findOne(id);
+    }
 
-	@Override
-	public List<Epic> getEpics(final Long id) {
-		return epicRepository.findBySprint_id(id);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Epic> getEpics(final Long id) {
+        return epicRepository.findBySprint_id(id);
+    }
 
-	@Override
-	public List<UserStory> getUserStories(final Long id) {
-		return userStoryRepository.findBySprint_idOrderByTimeEstimatedDayAsc(id);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UserStory> getUserStories(final Long id) {
+        return userStoryRepository.findBySprint_idOrderByTimeEstimatedDayAsc(id);
+    }
 
-	@Override
-	public void updateSprint(final Sprint sprint) {
-		final Sprint sprintBdd = sprintRepository.findOne(sprint.getId());
-		sprintBdd.setDateBegin(sprint.getDateBegin());
-		sprintBdd.setDateEnd(sprint.getDateEnd());
-		sprintBdd.setName(sprint.getName());
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateSprint(final Sprint sprint) {
+        // on récupère le sprint et on lui set les nouvelles valeurs
+        final Sprint sprintBdd = sprintRepository.findOne(sprint.getId());
+        sprintBdd.setDateBegin(sprint.getDateBegin());
+        sprintBdd.setDateEnd(sprint.getDateEnd());
+        sprintBdd.setName(sprint.getName());
+    }
 
 }

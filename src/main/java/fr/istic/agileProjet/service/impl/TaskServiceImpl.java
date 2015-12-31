@@ -26,11 +26,17 @@ public class TaskServiceImpl implements ITaskService {
         taskRepository.save(task);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Task getOneTask(final Long idTask) {
         return taskRepository.findOne(idTask);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateTask(final Task task) {
         // merge
@@ -39,6 +45,9 @@ public class TaskServiceImpl implements ITaskService {
         taskBdd.setName(task.getName());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteTask(final Long idTask) {
         taskRepository.delete(idTask);

@@ -9,6 +9,12 @@ import fr.istic.agileProjet.domain.Project;
 
 @Repository
 public interface ProjetRepository extends CrudRepository<Project, Long>, ProjetRepositoryCustom {
-	List<Project> findByName(final String name);
-	List<Project> findByNameAndIdNot(final String name, final Long id);
+    /** Récupération de tous les projets ayant le nom indiqué. **/
+    List<Project> findByName(final String name);
+
+    /**
+     * Récupération de tous les projets ayant le nom indiqué et un identifiant
+     * de projet différent que celui indiqué.
+     */
+    List<Project> findByNameAndIdNot(final String name, final Long id);
 }

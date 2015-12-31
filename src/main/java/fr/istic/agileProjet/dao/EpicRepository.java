@@ -10,5 +10,6 @@ import fr.istic.agileProjet.domain.Epic;
 @Repository
 public interface EpicRepository extends CrudRepository<Epic, Long> {
 
-	List<Epic> findBySprint_id(Long id);
+    /** Récupération des epics du sprint id. */
+    List<Epic> findBySprint_id(Long id);
 }

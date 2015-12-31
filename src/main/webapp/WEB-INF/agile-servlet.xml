@@ -13,7 +13,7 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:util="http://www.springframework.org/schema/util"
-
+		
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
@@ -30,14 +30,10 @@
     <context:component-scan base-package="fr.istic.agileProjet.*"/> 
    
     <mvc:annotation-driven/>
-    <context:annotation-config />
-	<mvc:default-servlet-handler/>
 	
     <bean id="jacksonMessageChanger" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
         <property name="supportedMediaTypes" value="application/json"/>
     </bean>
-    
-    <bean id="documentationConfig" class="com.mangofactory.swagger.configuration.DocumentationConfig"/>
     
    <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -46,6 +42,8 @@
           p:exposedContextBeanNames="urlFrontProperties"
           p:suffix=".jsp" />
    
+   <aop:aspectj-autoproxy/>
+	<bean class="fr.istic.agileProjet.aspect.LogAspect"/>
    
 
 </beans>

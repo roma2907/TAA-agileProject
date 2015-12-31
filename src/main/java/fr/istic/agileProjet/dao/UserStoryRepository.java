@@ -9,5 +9,9 @@ import fr.istic.agileProjet.domain.UserStory;
 
 @Repository
 public interface UserStoryRepository extends CrudRepository<UserStory, Long> {
-	List<UserStory> findBySprint_idOrderByTimeEstimatedDayAsc(Long sprint);
+    /**
+     * Récupération des user stories d'un sprint avec tri par ordre du temps
+     * estimé.
+     */
+    List<UserStory> findBySprint_idOrderByTimeEstimatedDayAsc(Long sprint);
 }

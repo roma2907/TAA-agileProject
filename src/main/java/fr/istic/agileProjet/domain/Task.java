@@ -8,8 +8,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wordnik.swagger.annotations.ApiModel;
 
+/**
+ * Entité Tache, représente une tache dans le contexte d'un projet agile.
+ * 
+ * @author ramage
+ *
+ */
 @Entity
+@ApiModel(value = "Model d'une tache")
 public class Task {
 
     private Long id;

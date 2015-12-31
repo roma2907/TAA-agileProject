@@ -4,6 +4,6 @@ import fr.istic.agileProjet.domain.Project;
 
 public interface ProjetRepositoryCustom {
 
-
-	Project findOneWithFetch(Long id);
+    /** Récupération du projet avec un fetch des sprints associés. */
+    Project findOneWithFetch(Long id);
 }

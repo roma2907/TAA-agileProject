@@ -19,38 +19,44 @@ import fr.istic.agileProjet.domain.UserStory;
 
 public class DeveloppeurRepositoryImpl implements DeveloppeurRepositoryCustom {
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-	@Override
-	public List<Developper> developpersNotInsideProject(final Long id) {
-		final CriteriaBuilder cb = em.getCriteriaBuilder();
-		final CriteriaQuery<Developper> query = cb.createQuery(Developper.class);
-		final Root<Developper> poRoot = query.from(Developper.class);
-		query.select(poRoot);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Developper> developpersNotInsideProject(final Long id) {
+        final CriteriaBuilder cb = em.getCriteriaBuilder();
+        final CriteriaQuery<Developper> query = cb.createQuery(Developper.class);
+        final Root<Developper> poRoot = query.from(Developper.class);
+        query.select(poRoot);
 
-		final Subquery<Developper> subquery = query.subquery(Developper.class);
-		final Root<Developper> subRoot = subquery.from(Developper.class);
-		final Join<Developper, Project> project = subRoot.join("projets");
-		subquery.select(subRoot);
+        final Subquery<Developper> subquery = query.subquery(Developper.class);
+        final Root<Developper> subRoot = subquery.from(Developper.class);
+        final Join<Developper, Project> project = subRoot.join("projets");
+        subquery.select(subRoot);
 
-		final Predicate p = cb.equal(project.get("id"), id);
-		subquery.where(p);
-		query.where(cb.not(poRoot.get("id").in(subquery)));
+        final Predicate p = cb.equal(project.get("id"), id);
+        subquery.where(p);
+        query.where(cb.not(poRoot.get("id").in(subquery)));
 
-		return em.createQuery(query).getResultList();
-	}
+        return em.createQuery(query).getResultList();
+    }
 
-	@Override
-	public List<Developper> getDevelopperInProject(final Long idUserStory) {
-		final CriteriaBuilder cb = em.getCriteriaBuilder();
-		final CriteriaQuery<Developper> query = cb.createQuery(Developper.class);
-		final Root<Developper> root = query.from(Developper.class);
-		final Join<Developper, Project> project = root.join("projets");
-		final Join<Project, Sprint> sprint = project.join("sprints");
-		final Join<Sprint, UserStory> userStory = sprint.join("userStories");
-		query.where(cb.equal(userStory.get("id"), idUserStory));
-		return em.createQuery(query).getResultList();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Developper> getDevelopperInProject(final Long idUserStory) {
+        final CriteriaBuilder cb = em.getCriteriaBuilder();
+        final CriteriaQuery<Developper> query = cb.createQuery(Developper.class);
+        final Root<Developper> root = query.from(Developper.class);
+        final Join<Developper, Project> project = root.join("projets");
+        final Join<Project, Sprint> sprint = project.join("sprints");
+        final Join<Sprint, UserStory> userStory = sprint.join("userStories");
+        query.where(cb.equal(userStory.get("id"), idUserStory));
+        return em.createQuery(query).getResultList();
+    }
 
 }

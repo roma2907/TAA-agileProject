@@ -14,27 +14,39 @@ import fr.istic.agileProjet.service.IDeveloppeurService;
 @Transactional
 public class DeveloppeurServiceImpl implements IDeveloppeurService {
 
-	@Autowired
-	private DeveloppeurRepository developpeurRepository;
+    @Autowired
+    private DeveloppeurRepository developpeurRepository;
 
-	@Override
-	public Iterable<Developper> getAllDevelopper() {
-		return developpeurRepository.findAll();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Iterable<Developper> getAllDevelopper() {
+        return developpeurRepository.findAll();
+    }
 
-	@Override
-	public void addDevelopper(final Developper developper) {
-		developpeurRepository.save(developper);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addDevelopper(final Developper developper) {
+        developpeurRepository.save(developper);
+    }
 
-	@Override
-	public List<Developper> getDeveloppeurNotInProject(final Long idProjet) {
-		return developpeurRepository.developpersNotInsideProject(idProjet);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Developper> getDeveloppeurNotInProject(final Long idProjet) {
+        return developpeurRepository.developpersNotInsideProject(idProjet);
+    }
 
-	@Override
-	public List<Developper> getDevelopperInProject(final Long idUserStory) {
-		return developpeurRepository.getDevelopperInProject(idUserStory);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Developper> getDevelopperInProject(final Long idUserStory) {
+        return developpeurRepository.getDevelopperInProject(idUserStory);
+    }
 
 }

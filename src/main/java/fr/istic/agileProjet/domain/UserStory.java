@@ -13,10 +13,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wordnik.swagger.annotations.ApiModel;
 
+/**
+ * Entité UserStory, représente une user story dans le contexte d'un projet
+ * agile.
+ *
+ * @author ramage
+ *
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")
+@ApiModel(value = "Model d'une user story")
 public class UserStory {
 
     @Transient
@@ -73,6 +82,7 @@ public class UserStory {
         this.tasks = tasks;
     }
 
+    /** Création d'un epic à partir de l'user story. */
     public Epic convertToEpic() {
         return new Epic(timeEstimatedDay, name, sprint);
     }

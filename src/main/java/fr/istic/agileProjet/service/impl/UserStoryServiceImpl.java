@@ -27,6 +27,9 @@ public class UserStoryServiceImpl implements IUserStoryService {
     @Autowired
     private SprintRepository sprintRepository;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addUserStory(final UserStory userStory, final Long idSprint) {
         userStory.setSprint(sprintRepository.findOne(idSprint));
@@ -38,13 +41,22 @@ public class UserStoryServiceImpl implements IUserStoryService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateUserStory(final UserStory userStory) {
+        // on réucpère l'ancienne user story(pour garder les relations
+        // task,Sprint)
         final UserStory result = userStoryRepository.findOne(userStory.getId());
+        // on set les nouvelles données
         result.setName(userStory.getName());
         result.setTimeEstimatedDay(userStory.getTimeEstimatedDay());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UserStory getOneUserStory(final Long idUserStory) {
         return userStoryRepository.findOne(idUserStory);
