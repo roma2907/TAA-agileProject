@@ -62,4 +62,12 @@ public class UserStoryServiceImpl implements IUserStoryService {
         return userStoryRepository.findOne(idUserStory);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void deleteUserStory(final Long idUserStory) {
+        userStoryRepository.delete(idUserStory);
+    }
+
 }

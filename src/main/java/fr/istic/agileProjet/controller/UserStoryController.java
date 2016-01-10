@@ -17,7 +17,7 @@ import fr.istic.agileProjet.service.IUserStoryService;
 
 /**
  * Controlleur user story (acces /rest/userstory).
- * 
+ *
  * @author ramage
  *
  */
@@ -49,5 +49,11 @@ public class UserStoryController {
     public @ResponseBody UserStory getOneUserStory(
             @ApiParam(required = true, value = "identifiant de l'user story recherché") @PathVariable final Long idUserStory) {
         return userStoryService.getOneUserStory(idUserStory);
+    }
+
+    @RequestMapping(value = "/{idUserStory}", method = RequestMethod.DELETE)
+    @ApiOperation(httpMethod = "DELETE", value = "Suppression de l'user story de l'identifiant indiqué")
+    public void deleteUserStory(@PathVariable("idUserStory") final Long idUserStory) {
+        userStoryService.deleteUserStory(idUserStory);
     }
 }

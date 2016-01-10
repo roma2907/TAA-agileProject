@@ -13,7 +13,7 @@ import com.wordnik.swagger.annotations.ApiModel;
 /**
  * Entité projet, représente un projet dans le contexte d'une application de
  * gestion de projet agile.
- * 
+ *
  * @author ramage
  *
  */

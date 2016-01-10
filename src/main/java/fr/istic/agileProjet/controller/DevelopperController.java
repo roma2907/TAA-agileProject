@@ -19,7 +19,7 @@ import fr.istic.agileProjet.service.IDeveloppeurService;
 
 /**
  * Controlleur développeur (acces /rest/developpeur).
- * 
+ *
  * @author ramage
  *
  */
@@ -38,7 +38,7 @@ public class DevelopperController {
     }
 
     @ApiOperation(httpMethod = "POST", value = "Création d'un nouveau développeur.")
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void addDevelopper(
             @ApiParam(required = true, value = "Développeur à créer.") @RequestBody final Developper developper) {
         developpeurService.addDevelopper(developper);

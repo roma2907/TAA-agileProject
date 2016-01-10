@@ -2,6 +2,7 @@ package fr.istic.agileProjet.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -73,7 +74,7 @@ public class UserStory {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "userStory")
+    @OneToMany(mappedBy = "userStory", cascade = CascadeType.REMOVE)
     public List<Task> getTasks() {
         return tasks;
     }
@@ -94,6 +95,7 @@ public class UserStory {
      * @return true si l'user story est un epic
      */
     @Transient
+    @JsonIgnore
     public boolean isEpic() {
         return (this.getSprint().getDateEnd().getTime() - this.getSprint().getDateBegin().getTime())
                 / DAYMILLIS < this

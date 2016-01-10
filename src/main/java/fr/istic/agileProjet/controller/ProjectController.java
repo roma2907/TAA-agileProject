@@ -17,7 +17,7 @@ import fr.istic.agileProjet.service.IProjetService;
 
 /**
  * Controlleur projet (acces /rest/projet).
- * 
+ *
  * @author ramage
  *
  */

@@ -1,0 +1,40 @@
+nginx:
+  image: jwilder/nginx-proxy:latest
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+  ports:
+    - "80:80"
+web1:
+  build: .
+  links:
+    - mysql
+  ports:
+    - "8080"
+  environment:
+    - VIRTUAL_HOST=myapp.taa.fr
+
+web2:
+  build: .
+  links:
+    - mysql
+  ports:
+    - "8080"
+  environment:
+    - VIRTUAL_HOST=myapp.taa.fr
+
+web3:
+  build: .
+  links:
+    - mysql
+  ports:
+    - "8080"
+  environment:
+    - VIRTUAL_HOST=myapp.taa.fr
+
+mysql:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: motDe2Passe
+    MYSQL_DATABASE: test
+
+

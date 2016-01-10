@@ -16,7 +16,7 @@ public interface IUserStoryService {
 
     /**
      * Modification d'une user story.
-     * 
+     *
      * @param userStory
      *            : nouvelle données de l'user story
      */
@@ -24,10 +24,18 @@ public interface IUserStoryService {
 
     /**
      * Récupération de l'user story ayant l'identifiant indiqué.
-     * 
+     *
      * @param idUserStory
      *            : identifiant de l'user story voulu
      * @return l'user story recherché
      */
     UserStory getOneUserStory(Long idUserStory);
+
+    /**
+     * Suppression d'une user story
+     * 
+     * @param idUserStory
+     *            : identifiant de l'usr story a supprimé
+     */
+    void deleteUserStory(Long idUserStory);
 }
