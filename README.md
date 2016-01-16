@@ -22,10 +22,10 @@ Description du projet
 
 Le projet est une application rest, l'application se lance graĉe à Springboot.
 J'ai découpé l'application java en plusieurs package:
-Dans le package controller on peut retoruver l'intégralité des controlleurs rest.
-Dans le package service, on peut retrouver à tous les services qui sont appelés par les controleurs.
-Dans le package domain, on peut retrouver les entités JPA représentant le model du projet.
-Dans le package dao, on peut retrouver les éléments qui permettent de faire des requetes en base de données (CrudRepository).
-Dans le package aspect, on retrouve les aspects du projet, notament l'aspect qui log des qu'un utilisateur appelle une méthode du controlleur.
+* Dans le package controller on peut retoruver l'intégralité des controlleurs rest.
+* Dans le package service, on peut retrouver à tous les services qui sont appelés par les controleurs.
+* Dans le package domain, on peut retrouver les entités JPA représentant le model du projet.
+* Dans le package dao, on peut retrouver les éléments qui permettent de faire des requetes en base de données (CrudRepository).
+* Dans le package aspect, on retrouve les aspects du projet, notament l'aspect qui log des qu'un utilisateur appelle une méthode du controlleur.
 
 
