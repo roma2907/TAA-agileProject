@@ -4,6 +4,7 @@ nginx:
     - /var/run/docker.sock:/tmp/docker.sock
   ports:
     - "80:80"
+
 web1:
   build: .
   links:
